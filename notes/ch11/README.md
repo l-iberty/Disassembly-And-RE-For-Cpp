@@ -169,8 +169,10 @@ CChild
 ```
 00F01980  mov         dword ptr [this],ecx		; this指针指向子类对象  
 00F01983  mov         eax,dword ptr [this]
-; 代码执行到此，子类的虚表指针和构造函数初始化的值一致
-00F01986  mov         dword ptr [eax],0F07B54h		; 子类对象的虚表指针 <- 子类的虚表首址
+; 代码执行到此，子类的虚表指针和子类构造函数初始化的值一致
+; 构造函数的调用顺序为 CChild::CChild 嵌套调用 CBase::CBase，且 CBase::CBase 先将this指针指向的子类对象虚表指针设置为指向
+; CBase 的虚表，而后 CChild::CChild 将其修改为指向 CChild 的虚表.
+00F01986  mov         dword ptr [eax],0F07B54h		; 子类对象的虚表指针 <- 子类的虚表首址
 		printf("~CChild\n");
 00F0198C  push        0F07C88h  
 00F01991  call        _printf (0F013D4h)  
