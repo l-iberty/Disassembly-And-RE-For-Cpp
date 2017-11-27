@@ -159,7 +159,7 @@ CChild
 00F01BBA  mov         eax,dword ptr [edx]		; eax <- 子类对象的虚表地址  
 00F01BBC  mov         ecx,dword ptr [ebp-0E0h]		; ecx <- 子类对象首址  
 00F01BC2  mov         edx,dword ptr [eax+4]		; edx <- 子类对象的虚表的第2项  
-00F01BC5  call        edx				; call CChild::~CChild
+00F01BC5  call        edx				; 析构代理函数
 ```
 
 **与之前最大的不同之处在于，这里并未调用析构代理函数，而是通过虚表调用了子类对象的析构代理函数 CChild::`vector deleting destructor'（子类对象的虚表的第2项并不是`CChild::~CChild`的入口地址），并间接调用了`CChild::~CChild`.**
