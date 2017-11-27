@@ -133,7 +133,7 @@ CChild
 01154B63  jmp         main+0AFh (01154B6Fh)
 ```
 
-**析构代理函数 CBase::`scalar deleting 内调用的是基类的析构函数：**
+**析构代理函数 CBase::`scalar deleting destructor' 内调用的是基类的析构函数：**
 
 ```
 ···
