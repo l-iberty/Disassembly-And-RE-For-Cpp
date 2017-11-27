@@ -126,11 +126,11 @@ CChild
 01154B41  mov         dword ptr [ebp-0E0h],ecx  
 01154B47  cmp         dword ptr [ebp-0E0h],0  
 01154B4E  je          main+0A5h (01154B65h)  
-01154B50  push        1					; 标记：释放单个对象(1)
-01154B52  mov         ecx,dword ptr [ebp-0E0h]		; ecx <- 子类对象首址  
-01154B58  call        CBase::`scalar deleting		; 析构代理函数 destructor' (0115142Eh)  
-01154B5D  mov         dword ptr [ebp-0F4h],eax  
-01154B63  jmp         main+0AFh (01154B6Fh)
+01154B50  push        1							; 标记：释放单个对象(1)
+01154B52  mov         ecx,dword ptr [ebp-0E0h]				; ecx <- 子类对象首址  
+01154B58  call        CBase::`scalar deleting destructor' (0115142Eh)	; 析构代理函数
+01154B5D  mov         dword ptr [ebp-0F4h],eax
+01154B63  jmp         main+0AFh (01154B6Fh)
 ```
 
 **析构代理函数 CBase::`scalar deleting 内调用的是基类的析构函数：**
