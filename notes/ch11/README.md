@@ -106,14 +106,14 @@ CChild
 01154B08  jmp         main+54h (01154B14h)  
 01154B0A  mov         dword ptr [ebp-0F4h],0  
 01154B14  mov         eax,dword ptr [ebp-0F4h]  
-01154B1A  mov         dword ptr [pBase],eax			; 基类指针`pBase`指向子类对象  
+01154B1A  mov         dword ptr [pBase],eax		; 基类指针`pBase`指向子类对象  
 	pBase->Show();
 01154B1D  mov         eax,dword ptr [pBase]  
-01154B20  mov         edx,dword ptr [eax]			; edx <- 子类对象的虚表地址 
+01154B20  mov         edx,dword ptr [eax]		; edx <- 子类对象的虚表地址 
 01154B22  mov         esi,esp  
 01154B24  mov         ecx,dword ptr [pBase]  
-01154B27  mov         eax,dword ptr [edx]			; eax <- 子类对象的虚表第一项（`CChild::Show`的入口地址）  
-01154B29  call        eax							; call CChild::Show
+01154B27  mov         eax,dword ptr [edx]		; eax <- 子类对象的虚表第一项（`CChild::Show`的入口地址）  
+01154B29  call        eax				; call CChild::Show
 ```
 
 **上述代码展示了虚函数是如何实现多态的，下面分析对象释放过程：**
@@ -126,9 +126,9 @@ CChild
 01154B41  mov         dword ptr [ebp-0E0h],ecx  
 01154B47  cmp         dword ptr [ebp-0E0h],0  
 01154B4E  je          main+0A5h (01154B65h)  
-01154B50  push        1							; 标记：释放单个对象(1)
-01154B52  mov         ecx,dword ptr [ebp-0E0h]	; ecx <- 子类对象首址  
-01154B58  call        CBase::`scalar deleting	; 析构代理函数 destructor' (0115142Eh)  
+01154B50  push        1					; 标记：释放单个对象(1)
+01154B52  mov         ecx,dword ptr [ebp-0E0h]		; ecx <- 子类对象首址  
+01154B58  call        CBase::`scalar deleting		; 析构代理函数 destructor' (0115142Eh)  
 01154B5D  mov         dword ptr [ebp-0F4h],eax  
 01154B63  jmp         main+0AFh (01154B6Fh)
 ```
@@ -154,12 +154,12 @@ CChild
 00F01BA7  cmp         dword ptr [ebp-0E0h],0  
 00F01BAE  je          main+0B6h (0F01BD6h)  
 00F01BB0  mov         esi,esp  
-00F01BB2  push        1								; 标记：释放单个对象(1) 
+00F01BB2  push        1					; 标记：释放单个对象(1) 
 00F01BB4  mov         edx,dword ptr [ebp-0E0h]  
-00F01BBA  mov         eax,dword ptr [edx]			; eax <- 子类对象的虚表地址  
+00F01BBA  mov         eax,dword ptr [edx]		; eax <- 子类对象的虚表地址  
 00F01BBC  mov         ecx,dword ptr [ebp-0E0h]		; ecx <- 子类对象首址  
-00F01BC2  mov         edx,dword ptr [eax+4]			; edx <- 子类对象的虚表的第2项  
-00F01BC5  call        edx							; call CChild::~CChild
+00F01BC2  mov         edx,dword ptr [eax+4]		; edx <- 子类对象的虚表的第2项  
+00F01BC5  call        edx				; call CChild::~CChild
 ```
 
 **与之前最大的不同之处在于，这里并未调用析构代理函数，而是通过虚表调用了子类对象的析构代理函数 CChild::`vector deleting destructor'（子类对象的虚表的第2项并不是`CChild::~CChild`的入口地址），并间接调用了`CChild::~CChild`.**
@@ -167,7 +167,7 @@ CChild
 **`CChild::~CChild`关键代码：**
 
 ```
-00F01980  mov         dword ptr [this],ecx			; this指针指向子类对象  
+00F01980  mov         dword ptr [this],ecx		; this指针指向子类对象  
 00F01983  mov         eax,dword ptr [this]
 ; 代码执行到此，子类的虚表指针和构造函数初始化的值一致
 00F01986  mov         dword ptr [eax],0F07B54h		; 子类对象的虚表指针 <- 子类的虚表首址
