@@ -19,11 +19,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{D9A21351-DE35-42CC-BA9C-C752346B4CB3}</ProjectGuid>
+    <ProjectGuid>{204EB085-D181-4417-8F07-D753B9CE44EF}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>My122多重继承1</RootNamespace>
+    <RootNamespace>My122多重继承</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
-    <ProjectName>12.2-多重继承</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

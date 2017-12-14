@@ -207,3 +207,51 @@ void main() {
 
 ## 3. 多重继承的类对象析构函数
 **根据子类对象首地址调用父类析构函数时，依然会调整`this`指针，就不再附代码了.**
+
+# 12.3 抽象类
+```
+class CAbstractBase {
+public:
+	virtual void Show() = 0;
+	virtual void Fuck() = 0;
+};
+
+class CAbstractChild :public CAbstractBase {
+public:
+	virtual void Show() {
+		printf("CAbstractChild\n");
+	}
+	virtual void Fuck() {
+		printf("Fuck!\n");
+	}
+};
+
+void main() {
+	CAbstractChild AbstractChild;
+	CAbstractBase *pBase = &AbstractChild;
+	pBase->Show();
+	pBase->Fuck();
+}
+```
+
+**跟踪到抽象父类的构造函数中初始化虚表指针的代码：**
+
+![](screenshot/21.png)
+
+图21
+
+**如图，抽象父类虚表中的两项相同，在反汇编窗口中定位到该函数：**
+
+![](screenshot/22.png)
+
+图22
+
+**显然，由于虚基类`CAbstractBase`的两个虚函数为纯虚函数，没有实现，因此编译器将虚表中纯虚函数的地址替换为`__purecall`. 之后子类构造函数将虚表指针修改为指向自己的虚表，使得`pBase->Show()`能正确调用到子类中实现的虚函数.**
+
+**现尝试调用`__purecall`，方法是：跟踪到子类替换虚基类的虚表指针的代码，替换后在内存窗体中再将虚表指针改回虚基类的虚表指针，之后执行`pBase->Show()`时就会通过虚基类的虚表调用到`__purecall`:**
+
+![](screenshot/23.png)
+
+图23
+
+**由此可知，编译器为了防止误调虚基类的纯虚函数，便用`__purecall`进行错误处理.**
