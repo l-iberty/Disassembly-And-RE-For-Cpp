@@ -51,6 +51,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "12.2-多重继承", "12.2-�
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "12.3-抽象类", "12.3-抽象类\12.3-抽象类.vcxproj", "{755056AC-BA6C-4FEA-B914-1373886346D4}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "12.4-菱形继承", "12.4-菱形继承\12.4-菱形继承.vcxproj", "{363E1990-15A8-4B8D-9C36-18EFFC5D25FE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -251,6 +253,14 @@ Global
 		{755056AC-BA6C-4FEA-B914-1373886346D4}.Release|x64.Build.0 = Release|x64
 		{755056AC-BA6C-4FEA-B914-1373886346D4}.Release|x86.ActiveCfg = Release|Win32
 		{755056AC-BA6C-4FEA-B914-1373886346D4}.Release|x86.Build.0 = Release|Win32
+		{363E1990-15A8-4B8D-9C36-18EFFC5D25FE}.Debug|x64.ActiveCfg = Debug|x64
+		{363E1990-15A8-4B8D-9C36-18EFFC5D25FE}.Debug|x64.Build.0 = Debug|x64
+		{363E1990-15A8-4B8D-9C36-18EFFC5D25FE}.Debug|x86.ActiveCfg = Debug|Win32
+		{363E1990-15A8-4B8D-9C36-18EFFC5D25FE}.Debug|x86.Build.0 = Debug|Win32
+		{363E1990-15A8-4B8D-9C36-18EFFC5D25FE}.Release|x64.ActiveCfg = Release|x64
+		{363E1990-15A8-4B8D-9C36-18EFFC5D25FE}.Release|x64.Build.0 = Release|x64
+		{363E1990-15A8-4B8D-9C36-18EFFC5D25FE}.Release|x86.ActiveCfg = Release|Win32
+		{363E1990-15A8-4B8D-9C36-18EFFC5D25FE}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

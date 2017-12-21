@@ -255,3 +255,18 @@ void main() {
 图23
 
 **由此可知，编译器为了防止误调虚基类的纯虚函数，便用`__purecall`进行错误处理.**
+
+# 12.4 菱形继承
+## 1. 菱形结果的类继承和派生
+```
+	CSofaBed SofaBed;
+00372438  push        1  ; 是否构造祖父类：1表示TRUE, 构造；0表示FALSE，不构造
+0037243A  lea         ecx,[SofaBed]  
+0037243D  call        CSofaBed::CSofaBed (037107Dh) 
+```
+
+**通过分析`CSofaBed::CSofaBed`的关键代码，我得到了菱形继承结构中子类对象`SofaBed`的内存布局，与书中`图12-14`一致，但我在看书前并没有弄清楚`ptr`字段(书中的`vt_offset`)的含义.**
+
+![](screenshot/24.png)
+
+图24 CSofaBed内存布局
